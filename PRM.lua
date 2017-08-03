@@ -36,6 +36,15 @@ function pingAllConnections()
 
 end
 
+bees = component.require("beehive_bees")
+
+function sendBees(origin,dest,amount,sting)
+    swarm = bees.agitate(origin, amount)
+    bees.flyTo(swarm, dest)
+    if sting do
+            bees.sting(entity.playerInArea(dest,10))
+    end
+end
 
 function getConnectionStatus(id)
     local file = fs.open("connections", "r")
