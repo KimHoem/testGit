@@ -17,6 +17,10 @@ function pingAllConnections()
     local file = fs.open("connections", "r")
     local content = file.readAll()
     local connections = textutils.unserialize(content)
+    local x = x + 2
+    print(x-2)
+    -- this should crash the program, as x initially was nil, and now is nil again.
+    -- #mindfuck amirite
 
     local cNum = next(connections)
 
