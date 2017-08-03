@@ -7,10 +7,22 @@ TODO Implement ping every interval
 
 rednet.open("right")
 
+verbose = true
+
 -- VARIABLES
 myID = os.getComputerID()
 
 -- FUNCTIONS
+
+function consoleLog(kind, msg)
+    if kind == 1 then term.write("[INFO] ")
+    elseif kind == 2 and verbose then term.write("[DEBUG] ")
+    elseif kind == 3 then term.write("[WARNING] ")
+    elseif kind == 4 then term.write("[CRITICAL]")
+    else
+        term.write("[????] ")
+    end
+end
 
 function pingAllConnections()
     local file = fs.open("connections", "r")
@@ -77,7 +89,6 @@ function getUserRegistered(id)
 
 end
 
-
 function updateConnected(id, isConnected, name, route)
 
     -- Read all content from file
@@ -92,22 +103,14 @@ function updateConnected(id, isConnected, name, route)
         ["connected"] = isConnected
     }
 
-    -- Debug info
-    -- print(id)
-    -- print(isConnected)
-    -- print(textutils.serialize(connections))
-
     local file = fs.open("connections", "w")
     file.write(textutils.serialize(connections))
     file.close()
-
-    -- print(textutils.serialize(connections[id]))
 
 end
 
 function sendPacket(to, msg)
     print("Sending " .. msg["command"] .. " to " .. to .. "(" .. msg["destination"] .. ")")
-    -- print(textutils.serialize(msg))
     if msg["direction"] == "CLIENT" then
         local newDest = table.remove(msg["route"])
         rednet.send(newDest, textutils.serialize(msg))
@@ -198,7 +201,6 @@ while running do
         if arg1 == "e" then
             print("--------------------------------")
             print("[INFO] User enforced shutdown...")
-            sleep(0.3)
             print("[CRITICAL] Packet Request Manager Offline")
             running = false
         end
