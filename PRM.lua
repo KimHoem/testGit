@@ -128,7 +128,7 @@ running = true
 term.clear()
 term.setCursorPos(1,1)
 
-consoleLog("Packet Request Manager Online")
+consoleLog(1, "Packet Request Manager Online")
 
 pingInverval = os.startTimer(5)
 
