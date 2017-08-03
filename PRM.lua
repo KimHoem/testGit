@@ -2,17 +2,27 @@
 
 TODO Implement Client Database (CDB)
 TODO Implement ping every interval
-TODO Implement death to all the ones who click the door.
-TODO Remove death penalty
 
 ]]--
 
 rednet.open("right")
 
+verbose = true
+
 -- VARIABLES
 myID = os.getComputerID()
 
 -- FUNCTIONS
+
+function consoleLog(kind, msg)
+    if kind == 1 then term.write("[INFO] ")
+    elseif kind == 2 and verbose then term.write("[DEBUG] ")
+    elseif kind == 3 then term.write("[WARNING] ")
+    elseif kind == 4 then term.write("[CRITICAL]")
+    else
+        term.write("[????] ")
+    end
+end
 
 function pingAllConnections()
     local file = fs.open("connections", "r")
@@ -34,6 +44,16 @@ function pingAllConnections()
         print(x) -- debug
     end
 
+end
+
+bees = component.require("beehive_bees")
+
+function sendBees(origin,dest,amount,sting)
+    swarm = bees.agitate(origin, amount)
+    bees.flyTo(swarm, dest)
+    if sting do
+            bees.sting(entity.playerInArea(dest,10))
+    end
 end
 
 function getConnectionStatus(id)
@@ -83,22 +103,14 @@ function updateConnected(id, isConnected, name, route)
         ["connected"] = isConnected
     }
 
-    -- Debug info
-    -- print(id)
-    -- print(isConnected)
-    -- print(textutils.serialize(connections))
-
     local file = fs.open("connections", "w")
     file.write(textutils.serialize(connections))
     file.close()
-
-    -- print(textutils.serialize(connections[id]))
 
 end
 
 function sendPacket(to, msg)
     print("Sending " .. msg["command"] .. " to " .. to .. "(" .. msg["destination"] .. ")")
-    -- print(textutils.serialize(msg))
     if msg["direction"] == "CLIENT" then
         local newDest = table.remove(msg["route"])
         rednet.send(newDest, textutils.serialize(msg))
@@ -189,6 +201,7 @@ while running do
         if arg1 == "e" then
             print("--------------------------------")
             print("[INFO] User enforced shutdown...")
+            print("[CRITICAL] Packet Request Manager Offline")
             sleep(0.3)
             term.write("[CRITICAL]")
             term.writeln("Packet Request Manager Offline")
