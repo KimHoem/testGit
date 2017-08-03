@@ -2,8 +2,6 @@
 
 TODO Implement Client Database (CDB)
 TODO Implement ping every interval
-TODO Implement death to all the ones who click the door.
-TODO Remove death penalty
 
 ]]--
 
