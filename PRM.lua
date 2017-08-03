@@ -11,6 +11,7 @@ verbose = true
 
 -- VARIABLES
 myID = os.getComputerID()
+bees = component.require("beehive_bees")
 
 -- FUNCTIONS
 
@@ -22,6 +23,7 @@ function consoleLog(kind, msg)
     else
         term.write("[????] ")
     end
+    term.write(msg .. "\n")
 end
 
 function pingAllConnections()
@@ -45,7 +47,6 @@ function pingAllConnections()
 
 end
 
-bees = component.require("beehive_bees")
 
 function sendBees(origin,dest,amount,sting)
     swarm = bees.agitate(origin, amount)
@@ -109,7 +110,7 @@ function updateConnected(id, isConnected, name, route)
 end
 
 function sendPacket(to, msg)
-    print("Sending " .. msg["command"] .. " to " .. to .. "(" .. msg["destination"] .. ")")
+    consoleLog(1, ("Sending " .. msg["command"] .. " to " .. to .. "(" .. msg["destination"] .. ")"))
     if msg["direction"] == "CLIENT" then
         local newDest = table.remove(msg["route"])
         rednet.send(newDest, textutils.serialize(msg))
@@ -127,8 +128,7 @@ running = true
 term.clear()
 term.setCursorPos(1,1)
 
-print("Packet Request Manager Online")
-print("-----------------------------")
+consoleLog("Packet Request Manager Online")
 
 pingInverval = os.startTimer(5)
 
@@ -139,7 +139,6 @@ while running do
         sender = arg1
         msgData = textutils.unserialize(arg2)
         dist = arg3
-        -- print(arg2)
 
         if msgData["direction"] == "BROADCAST" then
 
