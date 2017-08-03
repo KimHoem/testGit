@@ -47,7 +47,7 @@ function getConnectionStatus(id)
             print("Client " ..  id .. " is connected")
             return false
         else
-            print("Client " .. id .. " is not connected")
+            print("The client with the id" .. id .. "has not yet been registered")
             return false
         end
     end
