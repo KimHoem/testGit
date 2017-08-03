@@ -41,7 +41,6 @@ function pingAllConnections()
             ["command"] = "PING"
         })
         cNum = next(connections, cNum)
-        print(x) -- debug
     end
 
 end
@@ -63,10 +62,10 @@ function getConnectionStatus(id)
 
     if getUserRegistered(id) then
         if connections[id]["connected"] == true then
-            print("Client " ..  id .. " is connected")
-            return false
+            consoleLog(1, ("Client " ..  id .. " is connected"))
+            return true
         else
-            print("The client with the id" .. id .. "has not yet been registered")
+            consoleLog(1, ("The client with the id" .. id .. "has not yet been registered"))
             return false
         end
     end
