@@ -61,10 +61,8 @@ function getUserRegistered(id)
     local connections = textutils.unserialize(content)
 
     if connections[id] == nil then
-        print("Client " ..  id .. " is not registered")
         return false
     else
-        print("Client " .. id .. " is registered")
         return true
     end
 
