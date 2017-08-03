@@ -200,11 +200,10 @@ while running do
     elseif event == "char" then
         if arg1 == "e" then
             print("--------------------------------")
-            print("[INFO] User enforced shutdown...")
-            print("[CRITICAL] Packet Request Manager Offline")
+            consoleLog(1, "User enforced shutdown")
+            consoleLog(4, "Packet Request Manager going offline")
             sleep(0.3)
-            term.write("[CRITICAL]")
-            term.writeln("Packet Request Manager Offline")
+            consoleLog(4,"Server shutting down")
             running = false
         end
     elseif event == "timer" then
