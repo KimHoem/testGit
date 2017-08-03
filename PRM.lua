@@ -1,9 +1,3 @@
---[[
-
-TODO Implement Client Database (CDB)
-TODO Implement ping every interval
-
-]]--
 
 rednet.open("right")
 
@@ -18,6 +12,7 @@ function pingAllConnections()
     local connections = textutils.unserialize(content)
     local x = x + 2
     print(x-2)
+    x = "kim"
     -- this should crash the program, as x initially was nil, and now is nil again.
     -- #mindfuck amirite
 
@@ -34,6 +29,7 @@ function pingAllConnections()
         })
 
         cNum = next(connections, cNum)
+        print(x) -- debug
     end
 
 end
