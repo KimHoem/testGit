@@ -202,6 +202,9 @@ while running do
             print("--------------------------------")
             print("[INFO] User enforced shutdown...")
             print("[CRITICAL] Packet Request Manager Offline")
+            sleep(0.3)
+            term.write("[CRITICAL]")
+            term.writeln("Packet Request Manager Offline")
             running = false
         end
     elseif event == "timer" then
