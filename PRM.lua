@@ -1,3 +1,12 @@
+--[[
+
+TODO Implement Client Database (CDB)
+TODO Implement ping every interval
+
+]]--
+
+
+
 rednet.open("right")
 
 -- VARIABLES
