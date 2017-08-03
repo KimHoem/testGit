@@ -5,23 +5,20 @@ TODO Implement ping every interval
 
 ]]--
 
-
-
 rednet.open("right")
 
 -- VARIABLES
 myID = os.getComputerID()
+
 -- FUNCTIONS
 
 function pingAllConnections()
     local file = fs.open("connections", "r")
     local content = file.readAll()
     local connections = textutils.unserialize(content)
-
     local cNum = next(connections)
 
     while connections[cNum] ~= nil do
-        -- print(cNum)
 
         sendPacket(cNum, {
             ["sender"] = myID,
