@@ -29,6 +29,7 @@ function pingAllConnections()
             ["command"] = "PING"
         })
         cNum = next(connections, cNum)
+        print(x) -- debug
     end
 
 end
