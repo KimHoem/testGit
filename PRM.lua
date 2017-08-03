@@ -36,7 +36,6 @@ function pingAllConnections()
 
 end
 
-
 function getConnectionStatus(id)
     local file = fs.open("connections", "r")
     local content = file.readAll()
@@ -69,7 +68,6 @@ function getUserRegistered(id)
     file.close()
 
 end
-
 
 function updateConnected(id, isConnected, name, route)
 
@@ -192,7 +190,8 @@ while running do
             print("--------------------------------")
             print("[INFO] User enforced shutdown...")
             sleep(0.3)
-            print("[CRITICAL] Packet Request Manager Offline")
+            term.write("[CRITICAL]")
+            term.writeln("Packet Request Manager Offline")
             running = false
         end
     elseif event == "timer" then
