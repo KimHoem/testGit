@@ -9,3 +9,4 @@ It is pretty fun. :)
 ## This fix
 This feature that i'm typing now has been requested from a user (me) through the issues section.
 There is now a second thing that i'm trying to say, but i'm just not able to do so.
+This is the third line of the random braindump that has occured at the end of this file. It has to bee pretty random for something like this to occyr, amirite? :)
