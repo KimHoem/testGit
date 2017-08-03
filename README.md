@@ -8,3 +8,4 @@ In this repository I have had dialogues with myself to simulate a real conversat
 It is pretty fun. :)
 ## This fix
 This feature that i'm typing now has been requested from a user (me) through the issues section.
+There is now a second thing that i'm trying to say, but i'm just not able to do so.
